@@ -9,7 +9,7 @@ Brimstone, D&D board games, etc) and build maps on the computer.
 * [x] Drag image around canvas
 * [x] Put 2 images on canvas
 * [x] Select image
-* [ ] Delete image from canvas
+* [x] Delete image from canvas
 * [ ] Snap images into one "hunk"
 * [ ] Load arbitrary images onto the canvas
 * [ ] Save map

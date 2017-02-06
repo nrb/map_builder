@@ -14,6 +14,9 @@ class CanvasFrame(tk.Frame):
         self.canvas = tk.Canvas(width=(1920 * 0.75), height=1080)
         self.canvas.pack(fill="both", expand=True)
 
+        # Capture keyboard events
+        self.focus_set()
+
         self._selection = None
 
         # Retain a handle to all loaded images
@@ -25,6 +28,7 @@ class CanvasFrame(tk.Frame):
         self.canvas.tag_bind("piece", "<B1-Motion>", self.on_piece_motion)
         self.canvas.tag_bind("piece", "<ButtonRelease-1>",
                              self.on_piece_release)
+        self.bind("<Delete>", self.on_delete)
 
     def open_image(self, file_path):
         img = Image.open(file_path)
@@ -72,6 +76,15 @@ class CanvasFrame(tk.Frame):
     def on_piece_release(self, event):
         print("Mouse button released, resetting drag data")
         self._drag_data = {"x": 0, "y": 0, "item": None}
+
+    def on_delete(self, event):
+        print("Symbol was: {}".format(event.widget))
+
+        if self._selection:
+            self.canvas.delete(self._selection)
+            self._selection = None
+        else:
+            print("Nothing selected.")
 
 
 if __name__ == '__main__':
