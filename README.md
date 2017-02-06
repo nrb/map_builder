@@ -1,0 +1,14 @@
+# Map builder
+
+This project is something that will hopefully be small and allow me to
+take pre-made tiles for board games (Imperial Assult, Shadow of
+Brimstone, D&D board games, etc) and build maps on the computer.
+
+## Basic tasks
+* [x] Put an image on canvas
+* [ ] Drag image around canvas
+* [ ] Put 2 images on canvas
+* [ ] Snap images into one "hunk"
+* [ ] Save map
+* [ ] Import map file
+* [ ] Edit imported map file?
