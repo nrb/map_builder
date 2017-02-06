@@ -14,6 +14,9 @@ class CanvasFrame(tk.Frame):
         self.canvas = tk.Canvas(width=(1920 * 0.75), height=1080)
         self.canvas.pack(fill="both", expand=True)
 
+        # Retain a handle to all loaded images
+        self._images = []
+
         self._drag_data = {"x": 0, "y": 0, "item": None}
 
         self.canvas.tag_bind("piece", "<ButtonPress-1>", self.on_piece_press)
@@ -23,10 +26,11 @@ class CanvasFrame(tk.Frame):
 
     def open_image(self, file_path):
         img = Image.open(file_path)
-        # Must bind it to the class in order to avoid it being garbage
-        # collected
-        self.tk_image = ImageTk.PhotoImage(img)
-        self.canvas.create_image(250, 250, image=self.tk_image, tags="piece")
+        tk_image = ImageTk.PhotoImage(img)
+        # Add the image to all the ones we're tracking on the canvas
+        self._images.append(tk_image)
+        self.canvas.create_image(250, 250, image=self._images[-1],
+                                 tags="piece")
 
     def on_piece_press(self, event):
         self._drag_data["item"] = self.canvas.find_closest(event.x, event.y)[0]
@@ -57,4 +61,5 @@ if __name__ == '__main__':
     cf = CanvasFrame(root)
     cf.pack(fill="both", expand=True)
     cf.open_image("test.png")
+    cf.open_image("test2.png")
     root.mainloop()

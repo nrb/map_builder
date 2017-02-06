@@ -7,7 +7,7 @@ Brimstone, D&D board games, etc) and build maps on the computer.
 ## Basic tasks
 * [x] Put an image on canvas
 * [x] Drag image around canvas
-* [ ] Put 2 images on canvas
+* [x] Put 2 images on canvas
 * [ ] Snap images into one "hunk"
 * [ ] Load arbitrary images onto the canvas
 * [ ] Save map
