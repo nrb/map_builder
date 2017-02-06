@@ -11,6 +11,7 @@ Brimstone, D&D board games, etc) and build maps on the computer.
 * [x] Select image
 * [x] Delete image from canvas
 * [x] List contents of resources directory
+* [ ] Reclaim keyboard focus on canvas on click
 * [ ] Load Listbox selection onto the canvas
 * [ ] Snap images into one "hunk"
 * [ ] Save map
