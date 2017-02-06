@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 from PIL import Image, ImageTk
 try:
     import Tkinter as tk
@@ -90,12 +91,26 @@ class CanvasFrame(tk.Frame):
             print("Nothing selected.")
 
 
+def get_file_names(resource_dir):
+    files = os.listdir(resource_dir)
+
+    return files
+
+
 if __name__ == '__main__':
     root = tk.Tk()
 
     list_frame = tk.LabelFrame(root, text="Tiles", height=1080,
                                width=(1920 * 0.25))
     list_frame.pack(side=tk.LEFT, padx=10, fill=tk.Y)
+
+    list_box = tk.Listbox(list_frame)
+    list_box.pack(fill=tk.Y, expand=True)
+
+    files = get_file_names('resources')
+
+    for _file in files:
+        list_box.insert(tk.END, _file)
 
     cf = CanvasFrame(root, height=1080, width=(1920 * 0.75))
     cf.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
