@@ -14,6 +14,8 @@ class CanvasFrame(tk.Frame):
         self.canvas = tk.Canvas(width=(1920 * 0.75), height=1080)
         self.canvas.pack(fill="both", expand=True)
 
+        self._selection = None
+
         # Retain a handle to all loaded images
         self._images = []
 
@@ -34,6 +36,22 @@ class CanvasFrame(tk.Frame):
 
     def on_piece_press(self, event):
         self._drag_data["item"] = self.canvas.find_closest(event.x, event.y)[0]
+
+        # Note: we're not worrying about doing ctrl-click stuff now,
+        # maybe ever.
+        if not self._selection:
+            self._selection = self._drag_data["item"]
+            print("Selection set.")
+        # If this thing is already selected, de-select it
+        elif self._selection == self._drag_data["item"]:
+            self._selection = None
+            print("Selection unset")
+        # This clause could probably be merged into the first case,
+        # but for now we'll leave it.
+        elif not self._selection == self._drag_data["item"]:
+            self._selection = self._drag_data["item"]
+            print("Selection changed")
+
         self._drag_data["x"] = event.x
         self._drag_data["y"] = event.y
 
