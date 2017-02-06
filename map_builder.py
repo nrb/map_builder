@@ -8,11 +8,14 @@ except ImportError:
 
 
 class CanvasFrame(tk.Frame):
-    def __init__(self, parent):
-        tk.Frame.__init__(self, parent)
+    def __init__(self, parent, **kwargs):
+        tk.Frame.__init__(self, parent, **kwargs)
 
-        self.canvas = tk.Canvas(width=(1920 * 0.75), height=1080)
-        self.canvas.pack(fill="both", expand=True)
+        # Width will automatically fill to the frame, but height won't,
+        # so we specify it.
+        self.canvas = tk.Canvas(background="red",
+                                height=1080)
+        self.canvas.pack(fill=tk.BOTH, expand=True)
 
         # Capture keyboard events
         self.focus_set()
@@ -89,8 +92,14 @@ class CanvasFrame(tk.Frame):
 
 if __name__ == '__main__':
     root = tk.Tk()
-    cf = CanvasFrame(root)
-    cf.pack(fill="both", expand=True)
+
+    list_frame = tk.LabelFrame(root, text="Tiles", height=1080,
+                               width=(1920 * 0.25))
+    list_frame.pack(side=tk.LEFT, padx=10, fill=tk.Y)
+
+    cf = CanvasFrame(root, height=1080, width=(1920 * 0.75))
+    cf.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
     cf.open_image("test.png")
     cf.open_image("test2.png")
+
     root.mainloop()
