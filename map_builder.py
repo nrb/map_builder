@@ -7,7 +7,7 @@ except ImportError:
     import tkinter as tk
 
 root = tk.Tk()
-canvas = tk.Canvas(root, width=500, height=500)
+canvas = tk.Canvas(root, width=1920, height=1080)
 canvas.pack()
 
 img = Image.open("test.png")
